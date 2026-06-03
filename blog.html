@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ブログ - 声色舞台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink:      #ff99cc;
+      --pink-deep: #e0609a;
+      --pink-pale: #ffd6ec;
+      --light:     #fce8f3;
+      --dark:      #2a1020;
+      --mid:       #7a3055;
+      --white:     #fffafd;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      background: var(--white);
+      color: var(--dark);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      background: rgba(255,255,253,.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--pink-pale);
+    }
+
+    .nav-logo {
+      font-family: 'Shippori Mincho', serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: .1em;
+      color: var(--pink-deep);
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+    .nav-links a {
+      font-size: .8rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--mid);
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--pink-deep); }
+
+    /* HEADER */
+    .page-header {
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+      border-bottom: 1px solid var(--pink-pale);
+    }
+
+    .page-header .label {
+      font-size: .72rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 1rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Shippori Mincho', serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: var(--dark);
+      margin-bottom: .5rem;
+    }
+
+    .page-header .sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--mid);
+    }
+
+    /* MAIN */
+    .main-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 6rem;
+    }
+
+    /* TIMELINE */
+    .blog-list {
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .blog-list::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 6px; bottom: 6px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--pink), rgba(255,153,204,.1));
+    }
+
+    .blog-item {
+      position: relative;
+      padding: 1.4rem 0 1.4rem 1rem;
+      border-bottom: 1px solid var(--pink-pale);
+    }
+
+    .blog-item::before {
+      content: '';
+      position: absolute;
+      left: -4px; top: 1.9rem;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--pink);
+    }
+
+    .blog-item.latest::before {
+      background: var(--pink-deep);
+      box-shadow: 0 0 0 3px rgba(224,96,154,.2);
+    }
+
+    .blog-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .85rem;
+      letter-spacing: .08em;
+      color: var(--pink);
+      margin-bottom: .5rem;
+    }
+
+    .blog-body {
+      font-size: .9rem;
+      line-height: 1.95;
+      color: var(--mid);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,.35);
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.2rem;
+      color: var(--pink);
+      margin-bottom: .8rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(255,255,255,.35);
+      transition: color .2s;
+    }
+
+    .footer-links a:hover { color: var(--pink); }
+
+    .footer-copy { font-size: .72rem; }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">声色舞台</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <p class="label">Blog</p>
+  <h1>ブログ</h1>
+  <p class="sub">日々の感想や推し活の記録</p>
+</header>
+
+<main class="main-wrap">
+  <div class="blog-list">
+
+    <div class="blog-item latest">
+      <p class="blog-date">2026 / 06 / 01</p>
+      <p class="blog-body">サイトをオープンしました！これからどんどん更新していきます。</p>
+    </div>
+
+    <div class="blog-item">
+      <p class="blog-date">2026 / 06 / 01</p>
+      <p class="blog-body">ここに一言日記を書いていきます。</p>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <p class="footer-logo">声色舞台</p>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 個人ファンサイト　非公式・非営利</p>
+</footer>
+
+</body>
+</html>
