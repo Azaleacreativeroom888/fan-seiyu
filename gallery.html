@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ギャラリー - 声色舞台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink:      #ff99cc;
+      --pink-deep: #e0609a;
+      --pink-pale: #ffd6ec;
+      --light:     #fce8f3;
+      --dark:      #2a1020;
+      --mid:       #7a3055;
+      --white:     #fffafd;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-weight: 300;
+      background: var(--white);
+      color: var(--dark);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      background: rgba(255,255,253,.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--pink-pale);
+    }
+
+    .nav-logo {
+      font-family: 'Shippori Mincho', serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: .1em;
+      color: var(--pink-deep);
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+    .nav-links a {
+      font-size: .8rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--mid);
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--pink-deep); }
+
+    /* PAGE HEADER */
+    .page-header {
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+      border-bottom: 1px solid var(--pink-pale);
+    }
+
+    .page-header .label {
+      font-size: .72rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 1rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Shippori Mincho', serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: var(--dark);
+      margin-bottom: .5rem;
+    }
+
+    .page-header .sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--mid);
+    }
+
+    /* SECTION NAV ANCHORS */
+    .section-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1.8rem 1.5rem;
+      border-bottom: 1px solid var(--pink-pale);
+      flex-wrap: wrap;
+    }
+
+    .section-nav a {
+      font-size: .78rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--mid);
+      padding: .45rem 1.2rem;
+      border: 1px solid var(--pink-pale);
+      border-radius: 100px;
+      transition: all .2s;
+    }
+
+    .section-nav a:hover {
+      color: var(--pink-deep);
+      border-color: var(--pink);
+      background: var(--light);
+    }
+
+    /* MAIN */
+    .main-wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    /* SECTION BLOCK */
+    .gallery-section {
+      padding: 4rem 0 3rem;
+      border-bottom: 1px solid var(--pink-pale);
+    }
+
+    .gallery-section:last-child { border-bottom: none; }
+
+    .section-heading {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-heading .label {
+      font-size: .7rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: .6rem;
+    }
+
+    .section-heading h2 {
+      font-family: 'Shippori Mincho', serif;
+      font-weight: 600;
+      font-size: 1.6rem;
+      color: var(--dark);
+    }
+
+    .section-heading p {
+      font-size: .85rem;
+      color: var(--mid);
+      margin-top: .5rem;
+      line-height: 1.8;
+    }
+
+    /* ── ① ILLUSTRATION ── */
+    .illust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .illust-card {
+      aspect-ratio: 3/4;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--pink-pale);
+      background: var(--light);
+      position: relative;
+    }
+
+    .illust-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s;
+    }
+
+    .illust-card:hover img { transform: scale(1.04); }
+
+    /* ── ② AUDIO ── */
+    .audio-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .audio-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.2rem;
+      align-items: center;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid var(--pink-pale);
+      border-radius: 10px;
+      background: var(--light);
+      transition: border-color .2s;
+    }
+
+    .audio-item:hover { border-color: var(--pink); }
+
+    .audio-icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--pink-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .audio-info { min-width: 0; }
+
+    .audio-title {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: .3rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .audio-desc {
+      font-size: .78rem;
+      color: var(--mid);
+      margin-bottom: .7rem;
+    }
+
+    .audio-item audio {
+      width: 100%;
+      height: 32px;
+      accent-color: var(--pink-deep);
+    }
+
+    /* ── ③ SCRIPT ── */
+    .script-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .script-card {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--pink-pale);
+      background: var(--light);
+      transition: transform .3s, border-color .2s;
+      cursor: pointer;
+    }
+
+    .script-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--pink);
+    }
+
+    .script-card img {
+      width: 100%;
+      display: block;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    .script-card-label {
+      padding: .7rem 1rem;
+      font-size: .78rem;
+      color: var(--mid);
+      letter-spacing: .05em;
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(42,16,32,.92);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.2rem; right: 1.5rem;
+      font-size: 1.8rem;
+      color: var(--pink-pale);
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,.35);
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.2rem;
+      color: var(--pink);
+      margin-bottom: .8rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(255,255,255,.35);
+      transition: color .2s;
+    }
+
+    .footer-links a:hover { color: var(--pink); }
+
+    .footer-copy { font-size: .72rem; }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { gap: 1.2rem; }
+      .main-wrap { padding: 0 1rem 5rem; }
+      .illust-grid { grid-template-columns: repeat(2, 1fr); }
+      .script-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">声色舞台</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <p class="label">Gallery</p>
+  <h1>ギャラリー</h1>
+  <p class="sub">Illustrations · Audio · Scripts</p>
+</header>
+
+<!-- SECTION ANCHORS -->
+<div class="section-nav">
+  <a href="#illust">🖼️ イラスト</a>
+  <a href="#audio">🎙️ 音声</a>
+  <a href="#script">📝 スクリプト</a>
+</div>
+
+<main class="main-wrap">
+
+  <!-- ① ILLUSTRATION -->
+  <section class="gallery-section" id="illust">
+    <div class="section-heading">
+      <p class="label">Illustration</p>
+      <h2>イラスト</h2>
+      <p>声優さんのイラストです。</p>
+    </div>
+
+    <div class="illust-grid">
+      <!-- イラストを追加する場合は以下をコピーしてください -->
+      <!-- <div class="illust-card"><img src="images/illust01.jpg" alt="イラスト01"></div> -->
+    </div>
+  </section>
+
+  <!-- ② AUDIO -->
+  <section class="gallery-section" id="audio">
+    <div class="section-heading">
+      <p class="label">Audio</p>
+      <h2>音声</h2>
+      <p>音声素材です。</p>
+    </div>
+
+    <div class="audio-list">
+      <!-- 音声を追加する場合は以下をコピーしてください -->
+      <!--
+      <div class="audio-item">
+        <div class="audio-icon">🎙️</div>
+        <div class="audio-info">
+          <p class="audio-title">タイトル</p>
+          <p class="audio-desc">説明文</p>
+          <audio controls src="audio/sample.mp3"></audio>
+        </div>
+      </div>
+      -->
+    </div>
+  </section>
+
+  <!-- ③ SCRIPT -->
+  <section class="gallery-section" id="script">
+    <div class="section-heading">
+      <p class="label">Script</p>
+      <h2>スクリプト</h2>
+      <p>読んでみたら面白そうなセリフを自作しました。クリックで拡大できます。</p>
+    </div>
+
+    <div class="script-grid">
+      <!-- スクリプト画像を追加する場合は以下をコピーしてください -->
+      <!--
+      <div class="script-card" onclick="openLightbox('images/script01.jpg')">
+        <img src="images/script01.jpg" alt="スクリプト01">
+        <p class="script-card-label">タイトル</p>
+      </div>
+      -->
+    </div>
+  </section>
+
+</main>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">声色舞台</p>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 個人ファンサイト　非公式・非営利</p>
+</footer>
+
+<script>
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.getElementById('lightbox-img').src = '';
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+
+</body>
+</html>
