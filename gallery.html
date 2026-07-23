@@ -247,16 +247,20 @@
     /* ── ③ SCRIPT ── */
     .script-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 1.2rem;
     }
 
     .script-card {
+      aspect-ratio: 1 / 1;
       border-radius: 12px;
       border: 1px solid var(--pink-pale);
       background: #fff;
       padding: 1.6rem 1.5rem 1.4rem;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
       transition: transform .3s, border-color .2s, box-shadow .2s;
     }
 
@@ -280,6 +284,8 @@
       line-height: 2;
       color: var(--dark);
       white-space: pre-wrap;
+      overflow: hidden;
+      flex: 1;
     }
 
     .script-card::before {
@@ -443,20 +449,24 @@
     </div>
 
     <div class="script-grid">
-
+      
       <div class="script-card">
         <p class="script-card-title">怪盗セザンヌ</p>
-        <p class="script-card-body">おーほっほほほげっほげっほ私は怪盗セザンヌ。ここの宝石を奪いに来たわ<br>
-
-          セバスチャン！ここのセキュリティーはどのくもい厳重なのかしら？ふっ私にかかればこんなもの。ほうら！<br>
-
-          「お娘様、少々お声を小さくしていただけませぬか…」<br>
-
-          ん? なにこれは……警報がどうやら鳴っているわね。まったく…私の存在感は隠せないわ。どこに行っても人気者だわ。お～ほほほ<br>
-          
-          あ！！！足が滑る！！！ぎゃ！！！いだだだ……あ、あら…ご…ごきげんようそこのボリスメーン。<br>
-          セバスチャン私をおんぶしなさい！立てないのよ！逃げるなセバスチャーン！！</p>
+        <p class="script-card-body">おーほっほほほ（咳こむ）私は怪盗セザンヌ。ここの宝石を奪いに来たわ。<br>
+        セバスチャン!ここのセキュリティーはどのくもい厳重なのかしら? 私にかかればこんなもの。ほうらっ<br>
+        「お娘様、少々お声を小さくしていただけませぬか…」<br>
+        ん？なにこれは、警報がどうやら鳴っているわね。まったく、私の存在感は隠せないわ。どこに行っても人気者だわ～お～～っほほほ<br>
+        あ！！足が滑る！！！ぎゃ！！いだだだ。あらごきげんよう。そこのポリスメン。<br>
+        セバスチャン私をおんぶしなさい！立てないのよ！逃げるなセバスチャーン</p>
       </div>
+
+      <!-- セリフを追加する場合は以下をコピーしてください -->
+      <!--
+      <div class="script-card">
+        <p class="script-card-title">タイトル</p>
+        <p class="script-card-body">ここにセリフを入れてください。</p>
+      </div>
+      -->
 
     </div>
   </section>
