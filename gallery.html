@@ -247,36 +247,48 @@
     /* ── ③ SCRIPT ── */
     .script-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 1.2rem;
     }
 
     .script-card {
-      border-radius: 10px;
-      overflow: hidden;
+      border-radius: 12px;
       border: 1px solid var(--pink-pale);
-      background: var(--light);
-      transition: transform .3s, border-color .2s;
-      cursor: pointer;
+      background: #fff;
+      padding: 1.6rem 1.5rem 1.4rem;
+      position: relative;
+      transition: transform .3s, border-color .2s, box-shadow .2s;
     }
 
     .script-card:hover {
       transform: translateY(-4px);
       border-color: var(--pink);
+      box-shadow: 0 8px 24px rgba(255,153,204,.18);
     }
 
-    .script-card img {
-      width: 100%;
-      display: block;
-      object-fit: contain;
-      background: #fff;
+    .script-card-title {
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 1rem;
     }
 
-    .script-card-label {
-      padding: .7rem 1rem;
-      font-size: .78rem;
-      color: var(--mid);
-      letter-spacing: .05em;
+    .script-card-body {
+      font-family: 'Shippori Mincho', serif;
+      font-size: .95rem;
+      line-height: 2;
+      color: var(--dark);
+      white-space: pre-wrap;
+    }
+
+    .script-card::before {
+      content: '❝';
+      position: absolute;
+      top: .8rem; right: 1rem;
+      font-size: 1.8rem;
+      color: var(--pink-pale);
+      line-height: 1;
     }
 
     /* LIGHTBOX */
@@ -408,28 +420,6 @@
     </div>
 
     <div class="audio-list">
-      <div class="audio-item">
-        <div class="audio-icon">🎙️</div>
-        <div class="audio-info">
-          <p class="audio-title">ネチネチ悪役</p>
-          <p class="audio-desc">ちょっと面白い変わったスクリプト書きたくて作ったんですが、ちょっと恥ずかしいことになってしまいました。陰湿な悪役の演技です。ラスト（鋼の錬金術師）を元にしてます。</p>
-          <audio controls src="twitter投稿.mp4"></audio>
-        </div>
-      </div>
-    </div>
-
-    <div class="audio-list">
-      <div class="audio-item">
-        <div class="audio-icon">🎙️</div>
-        <div class="audio-info">
-          <p class="audio-title">ラスト（鋼の錬金術師）</p>
-          <p class="audio-desc">ネチネチ悪役の前にこのラストのセリフを読んでて、「ラストみたいなセリフ書きたい」って思ってネチネチ悪役のスクリプトを書いた経緯があります。下手ですが、本人はノリノリで演技してます(笑)</p>
-          <audio controls src="ラストセリフ(2)(1).m4a"></audio>
-        </div>
-      </div>
-    </div>
-
-    <div class="audio-list">
       <!-- 音声を追加する場合は以下をコピーしてください -->
       <!--
       <div class="audio-item">
@@ -453,13 +443,21 @@
     </div>
 
     <div class="script-grid">
-      <!-- スクリプト画像を追加する場合は以下をコピーしてください -->
-      <!--
-      <div class="script-card" onclick="openLightbox('images/script01.jpg')">
-        <img src="images/script01.jpg" alt="スクリプト01">
-        <p class="script-card-label">タイトル</p>
+
+      <div class="script-card">
+        <p class="script-card-title">怪盗セザンヌ</p>
+        <p class="script-card-body">おーほっほほほげっほげっほ私は怪盗セザンヌ。ここの宝石を奪いに来たわ<br>
+
+          セバスチャン！ここのセキュリティーはどのくもい厳重なのかしら？ふっ私にかかればこんなもの。ほうら！<br>
+
+          「お娘様、少々お声を小さくしていただけませぬか…」<br>
+
+          ん? なにこれは……警報がどうやら鳴っているわね。まったく…私の存在感は隠せないわ。どこに行っても人気者だわ。お～ほほほ<br>
+          
+          あ！！！足が滑る！！！ぎゃ！！！いだだだ……あ、あら…ご…ごきげんようそこのボリスメーン。<br>
+          セバスチャン私をおんぶしなさい！立てないのよ！逃げるなセバスチャーン！！</p>
       </div>
-      -->
+
     </div>
   </section>
 
